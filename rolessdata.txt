@@ -1,0 +1,53 @@
+1. Bối cảnh: Sự tiến hóa của các Data Role
+•	Quá khứ: "Data Analyst" (Nhà phân tích dữ liệu) từng là một vị trí "vạn năng" (catch-all title), đảm nhận từ việc viết code, gom dữ liệu, làm báo cáo cho đến chạy mô hình.
+•	Hiện tại: Sự bùng nổ của hạ tầng điện toán đám mây (Cloud) và khối lượng dữ liệu khổng lồ đòi hỏi sự chuyên môn hóa sâu sắc. Đội ngũ dữ liệu hiện đại được chia thành các vai trò rõ rệt để tối ưu hóa quy trình từ lúc thu thập cho đến khi ra quyết định.
+2. Chi tiết 5 vị trí cốt lõi trong Modern Data Team
+A. Data Engineer (Kỹ sư Dữ liệu) – Người xây móng
+•	Bản chất: Là các kiến trúc sư xây dựng hệ thống. Họ tập trung vào cơ sở hạ tầng để dữ liệu có thể chảy mượt mà từ các nguồn (App, Web, CRM...) về kho lưu trữ.
+•	Nhiệm vụ chính:
+o	Thiết kế, xây dựng và bảo trì các đường ống dữ liệu (Data Pipelines - ETL/ELT).
+o	Quản lý cấu trúc kho dữ liệu (Data Warehouse / Data Lake).
+o	Đảm bảo tính ổn định, độ tin cậy và chất lượng của dữ liệu thô.
+•	Kỹ năng & Công cụ: SQL, Python/Java, AWS/GCP, Snowflake/BigQuery, Airflow/Prefect.
+B. Analytics Engineer (Kỹ sư Phân tích) – Cầu nối hoàn hảo
+•	Bản chất: Đây là vị trí mới xuất hiện trong những năm gần đây (kỷ nguyên Modern Data Stack). Họ đóng vai trò là chiếc cầu nối giữa Data Engineer (dữ liệu thô) và Data Analyst (số liệu kinh doanh).
+•	Nhiệm vụ chính:
+o	Áp dụng các tư duy/thực thi của kỹ nghệ phần mềm (Software Engineering) vào việc biến đổi dữ liệu (Data Transformation).
+o	Làm sạch, mô hình hóa (modeling) và đóng gói dữ liệu thô thành các bảng dữ liệu sạch, có cấu trúc chuẩn để sẵn sàng phân tích.
+o	Quản lý phiên bản (Version Control), viết tài liệu (Documentation) và kiểm thử dữ liệu (Data Testing).
+•	Kỹ năng & Công cụ: SQL (Bậc thầy), dbt (Data Build Tool), Git.
+C. Data Analyst (Nhà phân tích Dữ liệu) – Người kể chuyện
+•	Bản chất: Là người trực tiếp làm việc với các phòng ban kinh doanh (Marketing, Sales, Product...) để chuyển hóa các con số khô khan thành thông tin có giá trị hành động (Insights).
+•	Nhiệm vụ chính:
+o	Xây dựng các bảng điều khiển trực quan (Dashboards) và báo cáo.
+o	Định nghĩa các chỉ số cốt lõi (KPIs/Metrics) cho doanh nghiệp.
+o	Trình bày và giải thích các xu hướng dữ liệu quá khứ/hiện tại cho các bên liên quan để đưa ra quyết định kinh doanh.
+•	Kỹ năng & Công cụ: SQL, Excel, Tableau/Power BI/Looker, Kỹ năng giao tiếp & Tư duy kinh doanh (Business Acumen).
+D. Data Scientist (Nhà khoa học Dữ liệu) – Người nghiên cứu nâng cao
+•	Bản chất: Tập trung vào các phương pháp thống kê chuyên sâu, thử nghiệm và xây dựng mô hình dự đoán để giải quyết các bài toán phức tạp mang tính chiến lược hoặc tự động hóa.
+•	Nhiệm vụ chính:
+o	Thiết kế và phân tích các bài thử nghiệm (A/B Testing).
+o	Xây dựng mô hình học máy (Machine Learning) như phân nhóm khách hàng (Clustering), dự báo doanh thu (Forecasting), hệ thống gợi ý (Recommendation)...
+o	Nghiên cứu tìm ra câu trả lời cho các câu hỏi mang tính giả định (What-if).
+•	Kỹ năng & Công cụ: Python/R, Thống kê toán học (Statistics), SQL, Thư viện ML (Scikit-Learn, TensorFlow).
+E. Machine Learning Engineer (Kỹ sư Học máy) – Người đưa mô hình vào thực tế
+•	Bản chất: Khác với Data Scientist (tập trung vào nghiên cứu và tối ưu độ chính xác của mô hình), ML Engineer tập trung vào việc triển khai vận hành (Productionalize) các mô hình đó ở quy mô lớn.
+•	Nhiệm vụ chính:
+o	Tối ưu hóa các thuật toán để chạy mượt mà, tốn ít tài nguyên và có độ trễ thấp trên môi trường thực tế.
+o	Xây dựng hệ thống MLOps để giám sát hiệu suất mô hình (theo dõi xem mô hình có bị suy giảm độ chính xác theo thời gian hay không).
+o	Tích hợp mô hình ML vào các phần mềm/ứng dụng của công ty.
+•	Kỹ năng & Công cụ: Python, MLOps Tools (MLflow, Kubeflow), Cloud Infrastructure, Software Engineering.
+3. Ma trận So sánh Kỹ năng (Skill Matrix)
+Để dễ hình dung về mức độ thành thạo của từng vai trò, bạn có thể phân loại theo bảng sau:
+Tiêu chí	Data Engineer	Analytics Engineer	Data Analyst	Data Scientist	ML Engineer
+SQL	Thượng thừa	Thượng thừa	Thành thạo	Khá/Tốt	Khá
+Python	Thành thạo	Cơ bản/Khá	Cơ bản	Thành thạo	Thượng thừa
+Kỹ nghệ phần mềm	Nâng cao	Khá/Tốt	Không yêu cầu	Trung bình	Nâng cao
+Thống kê toán học	Cơ bản	Cơ bản	Khá/Tốt	Thượng thừa	Nâng cao
+Tư duy kinh doanh	Thấp	Trung bình	Thượng thừa	Khá/Tốt	Thấp
+4. Quy trình vận hành chuẩn (Modern Data Stack Workflow)
+Dữ liệu sẽ đi qua các vai trò theo một chu trình khép kín:
+1.	Extract & Load (Trích xuất & Tải): Data Engineer lấy dữ liệu thô từ các nguồn về kho (ví dụ: Fivetran đưa dữ liệu vào Snowflake).
+2.	Transform (Biến đổi): Analytics Engineer dùng dbt để gọt giũa dữ liệu thô đó thành một "Nguồn sự thật duy nhất" (Single Source of Truth).
+3.	Consume (Tiêu thụ): Data Analyst lấy dữ liệu sạch làm dashboard; Data Scientist và ML Engineer lấy dữ liệu sạch để huấn luyện và triển khai mô hình.
+
