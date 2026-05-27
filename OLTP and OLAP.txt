@@ -1,0 +1,31 @@
+1. OLTP (Online Transaction Processing) - Hệ thống xử lý giao dịch trực tuyến
+•	Bản chất: Là các hệ thống sinh ra để "CHẠY" doanh nghiệp hàng ngày. Chúng chịu trách nhiệm ghi lại các giao dịch phát sinh tức thời từ phía người dùng hoặc ứng dụng.
+•	Mục tiêu chính: Tối ưu hóa cho các thao tác ghi, cập nhật và xóa dữ liệu cực kỳ nhanh chóng (tính bằng mili-giây) và đảm bảo tính toàn vẹn dữ liệu tuyệt đối (chuẩn ACID).
+•	Đặc điểm dữ liệu: * Chỉ chứa dữ liệu hiện tại, tức thời (real-time).
+o	Mỗi giao dịch tác động lên rất ít hàng dữ liệu (ví dụ: chỉ cập nhật đúng 1 dòng số dư của 1 tài khoản).
+•	Ví dụ thực tế: * Hệ thống trừ tiền khi bạn rút tiền tại cây ATM.
+o	Hệ thống cập nhật trạng thái "Đang giao hàng" trên Shopee.
+o	Thao tác tạo mới tài khoản trên một website.
+2. OLAP (Online Analytical Processing) - Hệ thống xử lý phân tích trực tuyến
+•	Bản chất: Là các hệ thống sinh ra để "HIỂU" doanh nghiệp. Chúng được thiết kế chuyên biệt để phục vụ việc truy vấn, phân tích dữ liệu lịch sử quy mô lớn nhằm hỗ trợ ra quyết định kinh doanh.
+•	Mục tiêu chính: Tối ưu hóa cho các thao tác đọc dữ liệu (truy vấn SELECT) cực kỳ nhanh trên một lượng dữ liệu khổng lồ (hàng triệu, hàng tỷ dòng).
+•	Đặc điểm dữ liệu:
+o	Lưu trữ dữ liệu lịch sử tích lũy qua nhiều năm từ nhiều nguồn khác nhau.
+o	Dữ liệu mang tính chất định lượng, tổng hợp (như tổng doanh thu, trung bình cộng, tăng trưởng).
+•	Ví dụ thực tế:
+o	Trưởng phòng Marketing chạy báo cáo: "Chiến dịch quảng cáo nào mang lại ROI cao nhất trong 3 năm qua?"
+o	Ban giám đốc phân tích xu hướng: "Khu vực nào có doanh số sụt giảm mạnh nhất trong quý trước?"
+
+3. Ma trận so sánh trực quan: OLTP vs. OLAP
+Tiêu chí	Hệ thống OLTP	Hệ thống OLAP
+Mục đích	Vận hành ứng dụng hàng ngày (Run Business).	Phân tích và báo cáo chiến lược (Understand Business).
+Trọng tâm thao tác	Ghi, cập nhật, xóa nhanh (Write-heavy).	Đọc và tổng hợp dữ liệu lớn (Read-heavy).
+Thời gian phản hồi	Tức thì (Mili-giây).	Có thể mất vài giây đến vài phút tùy độ phức tạp.
+Dữ liệu lưu trữ	Dữ liệu hiện tại, chi tiết từng giao dịch.	Dữ liệu lịch sử, đã được tổng hợp và làm sạch.
+Yêu cầu thiết kế	Chuẩn hóa cao để tránh trùng lặp (Normalization).	Khử chuẩn hóa (Denormalization) để tăng tốc đọc.
+Kiến trúc liên đới	Database giao dịch (MySQL, PostgreSQL, Oracle).	Data Warehouse (Redshift, Snowflake, BigQuery).
+
+4. Phối hợp
+- Giai đoạn 1 (Ingestion): Dữ liệu thô phát sinh trực tiếp từ các hệ thống OLTP của doanh nghiệp (như app bán hàng, hệ thống CRM, máy POS) được trích xuất và đổ dồn về Data Lake để bảo toàn trạng thái gốc.
+- Giai đoạn 2 & 3 (Transformation & Distribution): Dữ liệu thô từ Data Lake được lọc sạch và cấu trúc hóa để nạp vào Data Warehouse và Data Mart. Hệ thống lưu trữ lúc này chính là môi trường OLAP lý tưởng giúp các Data Analyst kéo thả dashboard báo cáo một cách mượt mà mà không sợ làm sập hay nghẽn các hệ thống OLTP đang chạy ứng dụng của khách hàng.
+
