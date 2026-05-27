@@ -1,0 +1,54 @@
+TỔNG HỢP KIẾN THỨC: DATA LAKE VS. DATA WAREHOUSE VS. DATA MART
+Khi dữ liệu doanh nghiệp phình to vượt quá giới hạn xử lý của các cơ sở dữ liệu truyền thống, chúng ta cần tới các giải pháp kiến trúc lưu trữ dữ liệu quy mô lớn (Analytical Storage Solutions) dưới đây.
+1. Định nghĩa & Bản chất cốt lõi
+A. Data Lake (Hồ dữ liệu)
+•	Bản chất: Là một hồ chứa khổng lồ tập trung, lưu trữ dữ liệu ở dạng thô (raw data), chưa qua xử lý, bất kể cấu trúc nào (bao gồm cả dữ liệu có cấu trúc, bán cấu trúc như JSON/XML, và phi cấu trúc như hình ảnh, video, âm thanh, log file).
+•	Triết lý: Lưu trữ trước, xử lý sau (Schema-on-Read). Dữ liệu chỉ được định hình cấu trúc khi có một dự án hoặc một ai đó thực sự cần phân tích nó.
+B. Data Warehouse (Kho dữ liệu)
+•	Bản chất: Là một kho lưu trữ trung tâm chứa dữ liệu đã được lọc sạch, chuẩn hóa và cấu trúc hóa rõ ràng từ nhiều nguồn khác nhau phục vụ mục đích báo cáo doanh nghiệp và Business Intelligence (BI).
+•	Triết lý: Xử lý trước, lưu trữ sau (Schema-on-Write). Dữ liệu bắt buộc phải đi qua quy trình làm sạch nghiêm ngặt trước khi được phép nạp vào kho.
+C. Data Mart (Chợ dữ liệu)
+•	Bản chất: Là một nhánh con (subset) được tách ra từ Data Warehouse chính, được thiết kế và tối ưu riêng biệt nhằm phục vụ nhu cầu phân tích của một phòng ban hoặc dự án cụ thể (ví dụ: Data Mart riêng cho bộ phận Marketing, Data Mart cho bộ phận Kế toán/Tài chính).
+•	Triết lý: Thu hẹp phạm vi để tối ưu tốc độ truy vấn, tăng tính bảo mật thông tin nội bộ và giúp các phòng ban tự phục vụ (Self-service analytics) dễ dàng hơn.
+
+
+
+
+2. Các điểm khác biệt cốt lõi (Kiến trúc phân tích)
+•	Quy trình xử lý dữ liệu:
+o	Data Warehouse sử dụng mô hình ETL (Extract - Transform - Load): Dữ liệu được trích xuất $\rightarrow$ Biến đổi/Làm sạch $\rightarrow$ Nạp vào kho.
+o	Data Lake sử dụng mô hình ELT (Extract - Load - Transform): Dữ liệu được trích xuất $\rightarrow$ Nạp thẳng vào hồ ở dạng thô $\rightarrow$ Khi cần phân tích mới biến đổi.
+•	Chất lượng dữ liệu (Data Quality):
+o	Dữ liệu trong Data Warehouse có độ tin cậy và độ sạch cực kỳ cao nhờ được rà soát, loại bỏ trùng lặp và xác minh từ trước.
+o	Dữ liệu trong Data Lake có thể lẫn lộn thông tin rác, trùng lặp hoặc chưa được kiểm chứng nếu doanh nghiệp không quản lý tốt (dễ dẫn tới hiện tượng "Đầm lầy dữ liệu" - Data Swamp).
+•	Đối tượng sử dụng chính:
+o	Data Lake: Thích hợp cho Data Scientists (Nhà khoa học dữ liệu) và Data Engineers - những người có kỹ năng lập trình mạnh mẽ để khai phá dữ liệu thô, chạy mô hình Học máy (Machine Learning) và AI.
+o	Data Warehouse / Data Mart: Thích hợp cho Data Analysts (DA), Business Analysts (BA), nhà quản lý doanh nghiệp - những người cần các báo cáo dashboard trực quan, số liệu sạch và đáng tin cậy tức thì.
+
+
+
+
+
+
+
+
+3. Ma trận so sánh chi tiết 
+
+Tiêu chí so sánh	Data Lake (Hồ dữ liệu)	Data Warehouse (Kho dữ liệu)	Data Mart (Chợ dữ liệu)
+Định dạng dữ liệu	Thô, chưa xử lý (Structured, Semi-structured, Unstructured).	Đã xử lý, có cấu trúc rõ ràng (Structured).	Đã xử lý sâu, cấu trúc hóa cao phục vụ phòng ban cụ thể.
+Schema (Lược đồ)	Schema-on-Read (Áp dụng cấu trúc khi đọc/phân tích).	Schema-on-Write (Bắt buộc thiết kế schema trước khi nạp).	Schema-on-Write (Thiết kế schema chuyên biệt cho phòng ban).
+Quy trình xử lý	ELT (Extract - Load - Transform).	ETL (Extract - Transform - Load).	ETL từ Data Warehouse chính hoặc nạp trực tiếp.
+Chi phí & Quy mô	Chi phí lưu trữ thấp, khả năng mở rộng cực lớn (Petabyte - Exabyte).	Chi phí cao hơn do tối ưu hóa hiệu năng đọc/ghi (Trăm Terabyte - Petabyte).	Chi phí thấp nhất vì quy mô nhỏ và tối ưu gọn nhẹ (Dưới Terabyte).
+Tính linh hoạt	Rất cao (dễ dàng thay đổi thuật toán, mô hình phân tích).	Thấp hơn (mỗi lần đổi schema cần chỉnh sửa hệ thống lớn).	Trung bình (gói gọn trong nhu cầu của một nhóm nhỏ).
+Mục đích chính	Phân tích dự báo, Machine Learning, lưu trữ lịch sử thô.	Báo cáo doanh nghiệp tổng thể, Business Intelligence (BI).	Báo cáo phòng ban chuyên biệt (Tài chính, Sales, Marketing...).
+
+
+
+
+
+4. Mô hình kết hợp trong thực tế (Modern Data Architecture)
+Trong các doanh nghiệp hiện đại ngày nay, ba mô hình này không hề triệt tiêu nhau mà được kết hợp nhịp nhàng thành một chuỗi cung ứng dữ liệu khép kín:
+1.	Bước 1: Dữ liệu thô từ mọi nguồn (App, Web log, IoT, CRM) đổ thẳng vào Data Lake để lưu trữ giá rẻ và bảo toàn trạng thái gốc.
+2.	Bước 2: Đội ngũ Data Engineers lọc sạch dữ liệu từ Data Lake, chuẩn hóa cấu trúc và nạp vào Data Warehouse tập trung của toàn doanh nghiệp.
+3.	Bước 3: Từ Data Warehouse chính, dữ liệu được phân nhánh và tinh lọc thành các Data Mart nhỏ hơn cho bộ phận Marketing (để tối ưu quảng cáo) và bộ phận Tài chính (để làm báo cáo thuế), giúp tăng tốc truy vấn mà không ảnh hưởng đến hiệu năng hệ thống chung.
+
