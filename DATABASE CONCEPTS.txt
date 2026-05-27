@@ -1,0 +1,101 @@
+TỔNG HỢP KIẾN THỨC: DATABASE CONCEPTS (SQL VS. NOSQL) & DATA STORAGE SOLUTIONS
+Để xây dựng một hệ thống dữ liệu vững chắc, việc hiểu rõ bản chất của các loại Cơ sở dữ liệu cũng như cách thức kiến trúc dữ liệu cấp doanh nghiệp (Data Lake, Data Warehouse, Data Mart) là điều tối quan trọng. Dưới đây là bức tranh toàn cảnh giúp bạn dễ dàng thiết kế các slide thuyết trình.
+1. Tổng quan: Cơ sở dữ liệu (Database) là gì?
+•	Định nghĩa: Cơ sở dữ liệu là một tập hợp các dữ liệu được tổ chức một cách hệ thống, giúp chúng ta dễ dàng lưu trữ, truy cập, quản lý và cập nhật thông tin bằng máy tính.
+•	Phân loại cốt lõi: Có hai trường phái thiết kế CSDL phổ biến nhất hiện nay:
+1.	CSDL quan hệ (SQL / RDBMS): Tổ chức dữ liệu dưới dạng bảng nghiêm ngặt.
+2.	CSDL phi quan hệ (NoSQL): Tổ chức dữ liệu linh hoạt, không bị bó buộc bởi cấu trúc bảng.
+2. Cơ sở dữ liệu quan hệ (Relational Database - SQL)
+A. Bản chất & Cách hoạt động
+•	Dữ liệu được tổ chức thành các Bảng (Tables) gồm các hàng (bản ghi - records) và cột (thuộc tính - attributes).
+•	Sử dụng ngôn ngữ SQL (Structured Query Language) để thực hiện các truy vấn dữ liệu.
+•	Ràng buộc bởi một Schema (lược đồ thiết kế) cố định và nghiêm ngặt. Bạn phải định nghĩa rõ cấu trúc dữ liệu trước khi nạp dữ liệu vào.
+B. Các khái niệm cốt lõi cần nhớ (Chi tiết & Trực quan)
+Để hiểu sâu về SQL, bạn cần nắm vững 6 khái niệm nền tảng dưới đây:
+1. Cấu trúc Bảng (Table), Hàng (Row) & Cột (Column)
+•	Table (Bảng): Là nơi lưu trữ đối tượng dữ liệu cụ thể (ví dụ: Bảng Khach_hang, Bảng Don_hang).
+•	Row/Record (Hàng/Bản ghi): Đại diện cho một đối tượng đơn lẻ cụ thể trong bảng (ví dụ: Thông tin của khách hàng "Nguyễn Văn A").
+•	Column/Field (Cột/Trường): Đại diện cho một thuộc tính của đối tượng (ví dụ: cột so_dien_thoai, ngay_sinh). Mỗi cột bắt buộc phải có một kiểu dữ liệu cố định (Số, Chữ, Ngày tháng...).
+2. Khóa chính (Primary Key - PK)
+•	Định nghĩa: Là một hoặc một nhóm cột dùng để định danh duy nhất cho mỗi hàng trong bảng.
+•	Tính chất bắt buộc:
+o	Giá trị không được trùng lặp (Unique).
+o	Không được để trống (Not Null).
+•	Ví dụ: Trong bảng Khach_hang, cột ma_khach_hang (KH001, KH002...) là Khóa chính. Không thể có hai khách hàng trùng mã, và mọi khách hàng đều phải có mã.
+3. Khóa ngoại (Foreign Key - FK)
+•	Định nghĩa: Là một cột trong bảng này nhưng trỏ tới (tham chiếu) Khóa chính của một bảng khác.
+•	Vai trò: Tạo mối liên kết logic giữa các bảng và đảm bảo tính toàn vẹn tham chiếu (Referential Integrity) - nghĩa là bạn không thể tạo một đơn hàng cho một mã khách hàng không tồn tại.
+•	Ví dụ: Bảng Don_hang có cột ma_khach_hang đóng vai trò là Khóa ngoại, liên kết trực tiếp sang Khóa chính ma_khach_hang của bảng Khach_hang.
+4. Các mối quan hệ (Relationships)
+Mối quan hệ giữa các bảng được thiết lập thông qua Khóa chính và Khóa ngoại:
+•	Quan hệ 1 - 1 (One-to-One): Một hàng ở bảng A chỉ liên kết với duy nhất một hàng ở bảng B.
+o	Ví dụ: Một Nhan_vien chỉ có một The_can_cuoc duy nhất.
+•	Quan hệ 1 - Nhiều (One-to-Many): Một hàng ở bảng A có thể liên kết với nhiều hàng ở bảng B, nhưng ngược lại thì không. Đây là mối quan hệ phổ biến nhất.
+o	Ví dụ: Một Khach_hang có thể đặt nhiều Don_hang, nhưng mỗi Don_hang chỉ thuộc về một Khach_hang duy nhất.
+•	Quan hệ Nhiều - Nhiều (Many-to-Many): Nhiều hàng ở bảng A có thể liên kết với nhiều hàng ở bảng B. Trong thực tế, để biểu diễn mối quan hệ này, ta bắt buộc phải xây dựng một bảng trung gian (Junction Table) chứa khóa ngoại của cả hai bảng.
+o	Ví dụ: Một Hoc_sinh có thể học nhiều Mon_hoc, và một Mon_hoc có thể có nhiều Hoc_sinh theo học. Bảng trung gian sẽ là bảng Dang_ky_hoc (chứa ma_hoc_sinh và ma_mon_hoc).
+5. Ràng buộc dữ liệu (Constraints)
+Là các quy tắc được áp dụng lên các cột để đảm bảo dữ liệu nhập vào luôn sạch và chính xác:
+•	NOT NULL: Bắt buộc phải điền thông tin, không được bỏ trống.
+•	UNIQUE: Dữ liệu trong cột không được trùng nhau (ví dụ: số CCCD, Email).
+•	DEFAULT: Tự động điền giá trị mặc định nếu người dùng không nhập (ví dụ: ngày tạo đơn hàng mặc định là ngày hôm nay).
+•	CHECK: Đảm bảo giá trị nhập vào thỏa mãn một điều kiện logic (ví dụ: cột tuoi phải >= 18).
+6. Chỉ mục (Index)
+•	Bản chất: Giống như trang mục lục của một cuốn sách. Thay vì máy tính phải quét qua hàng triệu hàng dữ liệu từ đầu đến cuối để tìm kiếm (Table Scan), Index giúp hệ thống tìm ra ngay vị trí dữ liệu cần tìm một cách nhanh chóng.
+•	Đánh đổi: Tăng tốc độ đọc dữ liệu (SELECT) nhưng làm chậm tốc độ ghi/sửa dữ liệu (INSERT, UPDATE) và tốn thêm dung lượng lưu trữ.
+C. Giao dịch & Tính chất ACID (Cực kỳ quan trọng)
+SQL đảm bảo tính nhất quán dữ liệu tuyệt đối nhờ tuân thủ nghiêm ngặt mô hình giao dịch (Transaction) đạt chuẩn ACID:
+•	Atomicity (Tính nguyên tử - "Được ăn cả, ngã về không"): Một giao dịch gồm nhiều bước phải được thực hiện thành công trọn vẹn 100%. Nếu có bất kỳ bước nào bị lỗi nửa chừng, toàn bộ giao dịch sẽ bị hủy bỏ và dữ liệu quay về trạng thái ban đầu (Rollback).
+•	Consistency (Tính nhất quán): Dữ liệu phải luôn hợp lệ và tuân thủ đúng mọi quy tắc, ràng buộc của hệ thống trước và sau khi thực hiện giao dịch.
+•	Isolation (Tính cô lập): Các giao dịch chạy song song không được can thiệp hay làm ảnh hưởng lẫn nhau. Kết quả của giao dịch này chỉ được nhìn thấy bởi giao dịch khác sau khi đã hoàn thành hoàn toàn.
+•	Durability (Tính bền vững): Một khi giao dịch đã thành công (Commit), dữ liệu sẽ được lưu lại vĩnh viễn vào ổ đĩa cứng và không bị mất ngay cả khi hệ thống bị sập nguồn đột ngột ngay sau đó.
+Ví dụ điển hình về ACID: Giao dịch chuyển tiền ngân hàng từ Tài khoản A sang Tài khoản B (Trừ tiền A -> Cộng tiền B). Nếu hệ thống mất điện đúng lúc tài khoản A vừa bị trừ tiền nhưng tài khoản B chưa được cộng, tính chất Atomicity sẽ tự động phục hồi lại tiền cho tài khoản A để tránh thất thoát.
+D. Ưu điểm & Nhược điểm
+•	Ưu điểm:
+o	Dữ liệu cực kỳ nhất quán, tránh trùng lặp dư thừa nhờ chuẩn hóa (Normalization).
+o	Bảo mật cao, hỗ trợ các giao dịch (transactions) phức tạp cực tốt (như giao dịch ngân hàng).
+•	Nhược điểm:
+o	Kém linh hoạt, khó thay đổi cấu trúc bảng khi hệ thống đang chạy.
+o	Chỉ mở rộng theo chiều dọc (Vertical Scaling) - tức là muốn mạnh hơn thì phải nâng cấp phần cứng của máy chủ (CPU, RAM, SSD), việc này rất tốn kém và có giới hạn vật lý.
+•	Ví dụ điển hình: MySQL, PostgreSQL, Microsoft SQL Server, Oracle Database.
+3. Cơ sở dữ liệu phi quan hệ (Non-relational Database - NoSQL)
+A. Bản chất & Cách hoạt động
+•	Không sử dụng mô hình bảng truyền thống, không cần Schema định sẵn (Schema-less). Dữ liệu có thể nạp vào bất cứ lúc nào mà không cần khai báo cấu trúc trước.
+•	Sử dụng các mô hình lưu trữ đa dạng tùy thuộc vào mục đích sử dụng.
+•	Thay vì ACID, NoSQL thường hướng tới tính chất BASE (Basically Available, Soft state, Eventual consistency) - ưu tiên tính sẵn sàng và tốc độ phản hồi hơn là sự nhất quán tức thì tại cùng một thời điểm.
+B. 4 loại CSDL NoSQL phổ biến nhất
+1.	Dạng tài liệu (Document Database):
+o	Dữ liệu lưu trữ dưới dạng cặp Key-Value nhưng Value là một tài liệu có cấu trúc (thường là JSON hoặc XML).
+o	Ví dụ: MongoDB, CouchDB. (Phù hợp cho quản lý nội dung blog, thông tin user).
+2.	Khóa - Giá trị (Key-Value Store):
+o	Mô hình đơn giản nhất, dữ liệu là một cặp khóa và giá trị tương ứng. Tốc độ đọc ghi cực nhanh.
+o	Ví dụ: Redis (thường dùng làm bộ nhớ đệm - Cache), DynamoDB.
+3.	Cột rộng (Wide-Column Store):
+o	Dữ liệu lưu dưới dạng các cột thay vì hàng, tối ưu cho việc truy vấn khối lượng dữ liệu khổng lồ cực nhanh.
+o	Ví dụ: Cassandra (Netflix và Facebook sử dụng), HBase.
+4.	Dạng đồ thị (Graph Database):
+o	Sử dụng cấu trúc đồ thị gồm các "Nút" (Nodes) và "Cạnh" (Edges - thể hiện mối quan hệ) để lưu trữ.
+o	Ví dụ: Neo4j. (Cực kỳ mạnh mẽ cho việc xây dựng mạng xã hội, hệ thống gợi ý kết bạn, phát hiện gian lận tài chính).
+C. Ưu điểm & Nhược điểm
+•	Ưu điểm:
+o	Cực kỳ linh hoạt, xử lý tốt cả dữ liệu phi cấu trúc và bán cấu trúc (hình ảnh, video, log file).
+o	Khả năng mở rộng theo chiều ngang (Horizontal Scaling) tuyệt vời - có thể dễ dàng ghép thêm hàng trăm máy tính rẻ tiền vào hệ thống để tăng tải thay vì mua một siêu máy tính đắt tiền.
+•	Nhược điểm:
+o	Tính nhất quán dữ liệu không cao bằng SQL (dữ liệu có thể mất vài mili-giây để đồng bộ trên toàn bộ hệ thống).
+o	Khó thực hiện các truy vấn liên kết bảng phức tạp (Join).
+4. Ma trận so sánh: SQL vs. NoSQL 
+Tiêu chí	Cơ sở dữ liệu SQL	Cơ sở dữ liệu NoSQL
+Mô hình dữ liệu	Dạng bảng (Hàng và Cột).	Đa dạng (Document, Key-Value, Graph, Column).
+Schema (Lược đồ)	Cố định, nghiêm ngặt (Pre-defined).	Linh hoạt, tự do (Dynamic / Schema-less).
+Khả năng mở rộng	Chiều dọc (Vertical - Nâng cấp phần cứng máy chủ).	Chiều ngang (Horizontal - Thêm nhiều máy chủ chạy song song).
+Tính nhất quán	Cực cao (Tuân thủ nghiêm ngặt chuẩn ACID).	Nhất quán cuối cùng (Hỗ trợ chuẩn BASE).
+Loại dữ liệu	Dữ liệu có cấu trúc (Structured).	Dữ liệu bán cấu trúc & phi cấu trúc.
+Phù hợp nhất cho	Giao dịch tài chính, hệ thống ERP/CRM, quản lý nhân sự.	Hệ thống Big Data, Mạng xã hội, Bộ nhớ đệm (Cache), IoT.
+5. Khi nào nên chọn loại nào? (Decision Framework)
+•	Chọn SQL khi:
+o	Bạn cần tính chính xác tuyệt đối của dữ liệu (ví dụ: số dư tài khoản ngân hàng không thể có sai số dù chỉ 1 xu).
+o	Cấu trúc dữ liệu của bạn đã rõ ràng, ít thay đổi và có nhiều mối liên kết chặt chẽ với nhau.
+•	Chọn NoSQL khi:
+o	Bạn cần lưu trữ một lượng lớn dữ liệu không có cấu trúc rõ ràng (như các bài đăng MXH, bình luận, log của ứng dụng).
+o	Hệ thống của bạn cần tốc độ đọc/ghi cực nhanh với quy mô người dùng tăng trưởng thần tốc theo từng ngày.
+o	Bạn đang phát triển ứng dụng theo phương pháp Agile và cấu trúc dữ liệu cần thay đổi liên tục mà không muốn làm sập hệ thống.
