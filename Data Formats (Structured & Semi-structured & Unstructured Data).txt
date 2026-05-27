@@ -1,0 +1,52 @@
+TỔNG HỢP KIẾN THỨC: DỮ LIỆU CÓ CẤU TRÚC (STRUCTURED DATA)
+Dựa trên tài liệu chính thức của Amazon Web Services (AWS), dưới đây là bản tổng hợp chi tiết và hệ thống hóa về dữ liệu có cấu trúc, các đặc điểm, lợi ích, thách thức, cũng như cách phân biệt với dữ liệu không cấu trúc và bán cấu trúc.
+1. Dữ liệu có cấu trúc (Structured Data) là gì?
+•	Định nghĩa: Dữ liệu có cấu trúc là loại dữ liệu được định dạng theo một chuẩn hóa nhất định (standardized format) giúp cả con người và phần mềm máy tính có thể truy cập, xử lý một cách hiệu quả.
+•	Cấu trúc đặc trưng: Thường tồn tại dưới dạng bảng (tabular) gồm các hàng (rows) và cột (columns) xác định rõ ràng các thuộc tính của dữ liệu.
+•	Khả năng xử lý: Do có tính chất định lượng cao, máy tính có thể xử lý loại dữ liệu này cực kỳ nhanh chóng để rút ra các insight kinh doanh.
+•	Ví dụ: Một bảng dữ liệu khách hàng gồm các cột: Tên, Địa chỉ, Số điện thoại.
+2. Các đặc điểm cốt lõi của Dữ liệu có cấu trúc
+•	Thuộc tính có thể định nghĩa (Definable attributes): Tất cả các giá trị dữ liệu đều có chung một nhóm thuộc tính mẫu. Ví dụ: mọi bản ghi đặt phòng đều có chung các trường: Tên người đặt, Tên sự kiện, Ngày đặt, Số tiền.
+•	Quan hệ giữa các thuộc tính (Relational attributes): Các bảng dữ liệu có thể liên kết (link) với nhau thông qua các trường giá trị chung (gọi là khóa ngoại/khóa chính). Ví dụ: liên kết bảng Khách hàng với bảng Đặt phòng qua trường customer_id. Do đó, loại dữ liệu này cực kỳ phù hợp để lưu trữ trong Cơ sở dữ liệu quan hệ (Relational Database).
+•	Dữ liệu định lượng (Quantitative data): Rất phù hợp cho các phép phân tích toán học, thống kê, đo lường tần suất hoặc thực hiện tính toán trên các trường số.
+•	Lưu trữ chuyên biệt: Được quản lý bằng Ngôn ngữ truy vấn có cấu trúc (SQL). SQL cho phép định nghĩa một mô hình dữ liệu gọi là Schema (lược đồ) - nơi thiết lập sẵn các quy tắc nghiêm ngặt về trường thông tin, định dạng và giá trị cho phép.
+Các ví dụ thực tế:
+•	File Excel / Google Sheets.
+•	Các cơ sở dữ liệu SQL (MySQL, PostgreSQL, SQL Server...).
+•	Dữ liệu từ máy bán hàng (Point-of-sale - POS).
+•	Kết quả điền từ các biểu mẫu Web (Web forms).
+•	Thẻ tối ưu hóa tìm kiếm (SEO tags).
+•	Danh mục sản phẩm, hệ thống quản lý kho, hệ thống đặt chỗ.
+3. Lợi ích và Thách thức
+Lợi ích:
+1.	Dễ sử dụng (Ease of use): Bất kỳ ai cũng có thể nhanh chóng đọc hiểu và truy cập dữ liệu có cấu trúc. Việc cập nhật, sửa đổi dữ liệu diễn ra rất trực quan. Định dạng lưu trữ cũng tối ưu hiệu năng phần cứng nhờ độ dài dữ liệu cố định.
+2.	Khả năng mở rộng (Scalability): Dễ dàng mở rộng quy mô lưu trữ và năng lực xử lý theo thuật toán khi lượng dữ liệu tăng lên (các hệ thống hiện đại có thể xử lý hàng nghìn TB dữ liệu).
+3.	Phân tích mạnh mẽ (Analytics): Các thuật toán học máy (Machine Learning) dễ dàng phân tích dữ liệu có cấu trúc để tìm ra các mô hình hành vi phục vụ Business Intelligence (BI).
+Thách thức:
+1.	Mục đích sử dụng hạn chế (Limited usage): Cấu trúc định sẵn vừa là lợi thế nhưng cũng là điểm yếu. Dữ liệu chỉ có thể dùng cho đúng mục đích thiết kế ban đầu.
+o	Ví dụ: Dữ liệu đặt phòng chỉ cho biết doanh thu phòng, chứ không thể cho biết chiến dịch Marketing nào mang lại lượt đặt đó, trừ khi bạn phải chủ động thay đổi cấu trúc bảng để liên kết thêm trường dữ liệu Marketing.
+2.	Kém linh hoạt (Inflexibility): Việc thay đổi Schema (lược đồ thiết kế bảng) khi doanh nghiệp phát sinh nhu cầu mới thường rất tốn kém chi phí, thời gian và tài nguyên hệ thống.
+
+
+
+4. Phân biệt: Structured vs. Unstructured vs. Semi-structured
+
+Tiêu chí	Dữ liệu có cấu trúc (Structured)	Dữ liệu bán cấu trúc (Semi-structured)	Dữ liệu không cấu trúc (Unstructured)
+Định nghĩa	Dữ liệu định dạng chuẩn, dạng bảng, tuân theo Schema nghiêm ngặt.	Nằm ở giữa; không có cấu trúc bảng hoàn chỉnh nhưng có chứa siêu dữ liệu (metadata/tag) để phân tích.	Dữ liệu thô hoàn toàn, không có mô hình dữ liệu hay quy tắc định sẵn nào.
+Độ phổ biến	Chiếm tỷ lệ nhỏ trong doanh nghiệp.	Trung bình.	Chiếm đa số dữ liệu doanh nghiệp tạo ra hàng ngày (khoảng 80 - 90%).
+Độ dễ phân tích	Rất dễ dàng cho cả con người và máy tính bằng các công cụ BI phổ thông.	Dễ phân tích hơn không cấu trúc nhưng phức tạp hơn có cấu trúc.	Rất khó; đòi hỏi công cụ chuyên sâu như xử lý ngôn ngữ tự nhiên (NLP) hay khai phá văn bản.
+Khả năng tìm kiếm	Cực kỳ đơn giản nhờ các truy vấn SQL có quy tắc.	Khá dễ tìm dựa vào các thẻ định danh (tags).	Khó tìm kiếm; yêu cầu chuyên môn kỹ thuật cao để bóc tách thông tin.
+Nơi lưu trữ	Data Warehouse (Kho dữ liệu tập trung).	Cơ sở dữ liệu NoSQL, file chứa cấu trúc thẻ.	Data Lake (Hồ dữ liệu chứa dữ liệu thô quy mô lớn).
+Ví dụ điển hình	SQL DBs, bảng Excel, POS data.	JSON, XML, Emails, Web files, file nén (.zip).	Video, hình ảnh, file ghi âm, bài đăng MXH, file PDF/Text tự do.
+
+
+
+
+
+
+5. Giải pháp hỗ trợ từ AWS
+AWS cung cấp dịch vụ Amazon Relational Database Service (Amazon RDS) giúp doanh nghiệp thiết lập, vận hành và mở rộng các cơ sở dữ liệu quan hệ (dành cho dữ liệu có cấu trúc) chỉ trong vài giây, bao gồm:
+•	Amazon Aurora (tương thích MySQL và PostgreSQL).
+•	Amazon RDS cho MySQL, MariaDB, PostgreSQL, Oracle, và SQL Server.
+Lợi ích khi dùng Amazon RDS: Di chuyển hệ thống cũ mà không cần thiết kế lại ứng dụng, giảm thiểu thời gian quản trị thủ công, cắt giảm chi phí vận hành và tập trung nguồn lực vào đổi mới sáng tạo.
+
